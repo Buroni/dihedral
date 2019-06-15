@@ -5,12 +5,12 @@ vertices of a regular `n`-gon. For example, D<sub>3</sub> represents the symmetr
 This python class generates the group structure of D<sub>n</sub> for any `n`, and contains methods for generating + verifying
 subgroups as well as applying transformations to the vertices.
 
-# Class structure
+## Class structure
 Rotation actions are stored in the class variable `r` as an array `r[0], ..., r[n / 2]` where the identity is `r[0]`. 
 Reflections are stored in the same way in the class variable `s`. Vertices are stores as numpy arrays in `v`, but can be accessed
 in a more readable integer format using the method `vertices`.
 
-# Acting on the vertices
+## Acting on the vertices
 
 ```python
 from Dihedral import Dihedral
@@ -26,7 +26,7 @@ d3.apply(d3.r[2], d3.vertices())
 # [2, 0, 1]
 ```
 
-# Composing symmetries
+## Composing symmetries
 Symmetries can be combined using the `compose` method.
 
 ```python
@@ -37,7 +37,7 @@ composed_symmetry = d3.compose([d3.s[2], d3.r[1]])
 d3.apply(composed_symmetry, [1])
 ```
 
-# Finding all subgroups
+## Finding all subgroups
 The method `subgroups` returns all subgroups in the dihedral group by generating all possible subsets of the group and
 verifying relevant group properties (identity, closure).
 
