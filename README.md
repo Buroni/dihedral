@@ -51,7 +51,21 @@ d3.subgroups()
 # [['r0'], ['r0', 's0'], ['r0', 's1'], ['r0', 's2'], ['r0', 'r1', 'r2'], ['r0', 'r1', 'r2', 's0', 's1', 's2']]
 ```
 
-Specific subsets can also be verified as being a subgroup or not using the `has_subgroup` method.
+Specific subsets can also be verified as being a subgroup or not using the `has_subgroup` method. This method takes a list of actions or another `Dihedral` instance.
+
+```python
+d6 = Dihedral(6)
+d3 = Dihedral(3)
+
+d6.has_subgroup(d3)
+# True
+
+d6.has_subgroup([d6.r[0], d6.r[1]])
+# False
+
+d6.has_subgroup([d6.r[0]])
+# True
+```
 
 # Reducing operations
 
