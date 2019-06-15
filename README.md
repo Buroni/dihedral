@@ -47,3 +47,13 @@ d3.subgroups()
 ```
 
 Specific subsets can also be verified as being a subgroup or not using the `has_subgroup` method.
+
+# Reducing operations
+
+While `compose` combines operations, they can be reduced to a readable format using `reduce_operations`. For example,
+
+```python
+# Reduce r_1(s_2)
+d3.reduce_operations(([d3.r[1], d3.s[2]]))
+# s0
+```
