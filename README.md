@@ -31,7 +31,7 @@ Symmetries can be combined using the `compose` method.
 
 ```python
 # Compose a rotation with reflection (s_2(r_1))
-composed_symmetry = d3.compose([d3.s[2], d3.r[1])
+composed_symmetry = d3.compose([d3.s[2], d3.r[1]])
 
 # Apply the symmetry to vertex 1
 d3.apply(composed_symmetry, [1])
