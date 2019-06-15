@@ -35,6 +35,7 @@ composed_symmetry = d3.compose([d3.s[2], d3.r[1]])
 
 # Apply the symmetry to vertex 1
 d3.apply(composed_symmetry, [1])
+# [2]
 ```
 
 ## Finding subgroups
