@@ -12,6 +12,10 @@ in a more readable integer format using the method `vertices`.
 
 ## Acting on the vertices
 
+Vertices and actions of the group D<sub>3</sub> are shown below as an example. The dotted lines denote reflections, and the arrow denoting R<sub>1</sub> is a 120 degree turn. R<sub>2</sub> would then be a 240 degree turn.
+
+<img src="https://i.imgur.com/8Q0G221.png"/>
+
 ```python
 from Dihedral import Dihedral
 
