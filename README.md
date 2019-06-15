@@ -37,7 +37,7 @@ composed_symmetry = d3.compose([d3.s[2], d3.r[1]])
 d3.apply(composed_symmetry, [1])
 ```
 
-## Finding all subgroups
+## Finding subgroups
 The method `subgroups` returns all subgroups in the dihedral group by generating all possible subsets of the group and
 verifying relevant group properties (identity, closure).
 
