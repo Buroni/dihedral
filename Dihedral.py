@@ -43,7 +43,7 @@ class Dihedral:
         return True
 
     def subgroups(self):
-        all_sublists = [sub for sub in dihedral_utils.sublists(self.r + self.s)]
+        all_sublists = [sub for sub in Dihedral.sublists(self.r + self.s)]
         all_subgroups = [sub for sub in all_sublists if self.has_subgroup(sub)]
         return [[self.__get_op_name(op) for op in sub] for sub in all_subgroups]
 
