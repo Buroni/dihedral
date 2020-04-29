@@ -3,14 +3,14 @@ from numpy.linalg import multi_dot
 import math
 from itertools import chain, combinations
 
-class Dihedral:
 
-    r = []
-    s = []
-    v = []
+class D:
 
     def __init__(self, n):
         self.n = n
+        self.r = []
+        self.s = []
+        self.v = []
         self.__calculate_rotations()
         self.__calculate_reflections()
         self.__calculate_vertices()
@@ -26,28 +26,38 @@ class Dihedral:
         return np.round(multi_dot(ops), 4)
 
     def has_subgroup(self, subset_or_group):
-        if type(subset_or_group) == Dihedral:
+        if type(subset_or_group) == D:
+            # If the subset is a D instance then collect all its operations into a subset
             subset = subset_or_group.r + subset_or_group.s
         else:
+            # Otherwise simply assign the subset
             subset = subset_or_group
         if not(self.__np_array_in_list(self.r[0], subset)):
+            # Identity test -- if no identity it's not a group
             return False
         all_ops = self.r + self.s
         for op1 in subset:
             if not(self.__np_array_in_list(op1, all_ops)):
+                # If not all of the subsets elements are in the larger group, then it's
+                # not a subset after all
                 return False
             for op2 in subset:
                 composed_op = self.compose([op1, op2])
                 if not (self.__np_array_in_list(composed_op, subset)):
+                    # If there's a pair of operations in the subset whose composition
+                    # isn't in the subset, then it isn't a group.
                     return False
         return True
 
     def subgroups(self):
-        all_sublists = [sub for sub in Dihedral.sublists(self.r + self.s)]
+        # Lagrange tells us we only need to check subsets that divide the order of the larger group
+        all_sublists = [sub for sub in D.sublists(self.r + self.s) if len(sub) > 0 and len(self.r + self.s) % len(sub) == 0]
         all_subgroups = [sub for sub in all_sublists if self.has_subgroup(sub)]
         return [[self.__get_op_name(op) for op in sub] for sub in all_subgroups]
 
-    def apply(self, op, v):
+    def apply(self, op, v=None):
+        if v is None:
+            v = self.vertices()
         if type(v) == list:
             return [self.__apply_one(op, vertex) for vertex in v]
         else:
@@ -118,6 +128,3 @@ class Dihedral:
     @staticmethod 
     def sublists(l):
         return chain(*(combinations(l, i) for i in range(len(l) + 1)))
-
-
-    

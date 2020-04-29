@@ -17,17 +17,21 @@ Vertices and actions of the group D<sub>3</sub> are shown below as an example. T
 <img src="https://i.imgur.com/SzLzRy9.png"/>
 
 ```python
-from Dihedral import Dihedral
+from dihedral import D
 
-d3 = Dihedral(3)
+d3 = D(3)
 
 # List the vertices in the group
 d3.vertices()
 # [0, 1, 2]
 
 # Perform a rotation of 240 degrees on the vertices
-d3.apply(d3.r[2], d3.vertices())
+d3.apply(d3.r[2])
 # [2, 0, 1]
+
+# Rotate vertex 0 by 120 degrees
+d3.apply(d3.r[1], [0])
+# [1]
 ```
 
 ## Composing symmetries
@@ -51,11 +55,11 @@ d3.subgroups()
 # [['r0'], ['r0', 's0'], ['r0', 's1'], ['r0', 's2'], ['r0', 'r1', 'r2'], ['r0', 'r1', 'r2', 's0', 's1', 's2']]
 ```
 
-Specific subsets can also be verified as being a subgroup or not using the `has_subgroup` method. This method takes a list of actions or another `Dihedral` instance.
+Specific subsets can also be verified as being a subgroup or not using the `has_subgroup` method. This method takes a list of actions or another `D` instance.
 
 ```python
-d6 = Dihedral(6)
-d3 = Dihedral(3)
+d6 = D(6)
+d3 = D(3)
 
 d6.has_subgroup(d3)
 # True
